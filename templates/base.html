@@ -66,11 +66,14 @@
     </div>
     {% endfor %}
   {% endif %}
-
   </div>
   
   {% block content %}
-    
   {% endblock content %}
+
+  {% block extra_body %}
+  {% endblock %}
+
+  {% include "footer.html" %}
 </body>
 </html>

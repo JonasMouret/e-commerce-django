@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.shortcuts import reverse
+from PIL import Image, ImageOps
 
 LABEL_CHOICES = (
     ('P', 'primary'),
@@ -36,6 +37,15 @@ class Item(models.Model):
 
     def get_remove_from_card_url(self):
         return reverse('core:remove-from-card', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if self.image :
+            super(Item, self).save()
+            img = Image.open(self.image.path)
+            if img.format != 'JPEG' or img.format != 'JPG':
+                img = img.convert('RGB')
+            img.thumbnail(size=(400,400))
+            img.save(self.image.path, format="JPEG", optimize=True, quality=70)
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

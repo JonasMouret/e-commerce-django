@@ -9,5 +9,4 @@ urlpatterns = [
     path('product/<slug>/', ItemDetailView.as_view(), name='product'),
     path('add-to-card/<slug>', add_to_card, name='add-to-card'),
     path('remove-from-card/<slug>', remove_from_card, name='remove-from-card'),
-
 ]
