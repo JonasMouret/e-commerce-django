@@ -19,9 +19,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('street_address', models.CharField(max_length=100)),
-                ('apartement_address', models.CharField(max_length=100)),
+                ('apartment_address', models.CharField(max_length=100)),
                 ('countries', django_countries.fields.CountryField(max_length=746, multiple=True)),
-                ('zip_code', models.CharField(max_length=20)),
+                ('zip', models.CharField(max_length=20)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
